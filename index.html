@@ -25,11 +25,7 @@
       --max-width: 1120px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -39,21 +35,10 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+    .page { min-height: 100vh; display: flex; flex-direction: column; }
 
     .shell {
       width: 100%;
@@ -117,9 +102,7 @@
       position: relative;
     }
 
-    .nav-links a:hover {
-      color: var(--text-main);
-    }
+    .nav-links a:hover { color: var(--text-main); }
 
     .nav-links a::after {
       content: "";
@@ -132,9 +115,7 @@
       transition: width 0.2s ease;
     }
 
-    .nav-links a:hover::after {
-      width: 18px;
-    }
+    .nav-links a:hover::after { width: 18px; }
 
     .btn-nav {
       padding: 0.45rem 1.1rem;
@@ -158,27 +139,129 @@
     .nav-mobile-toggle {
       display: none;
       background: none;
-      border: none;
+      border: 1px solid rgba(245,200,107,0.35);
+      border-radius: 12px;
+      padding: 0.35rem 0.55rem;
       color: var(--text-main);
-      font-size: 1.4rem;
+      font-size: 1.2rem;
+      line-height: 1;
+      cursor: pointer;
     }
 
     @media (max-width: 768px) {
-      .nav-inner {
-        padding-inline: 1rem;
-      }
-      .nav-links {
-        display: none;
-      }
-      .nav-mobile-toggle {
-        display: block;
-      }
+      .nav-inner { padding-inline: 1rem; }
+      .nav-links { display: none; }
+      .nav-mobile-toggle { display: inline-flex; align-items: center; justify-content: center; }
+      .nav-logo { height: 56px; }
     }
 
-    /* Hero */
-    .hero {
-      padding: 3.5rem 0 3rem;
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: none;
+      align-items: stretch;
+      justify-content: flex-end;
     }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(2px);
+    }
+
+    .mobile-menu-panel {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      width: min(360px, 88vw);
+      border-left: 1px solid rgba(245,200,107,0.22);
+      background: radial-gradient(circle at top left, rgba(245,200,107,0.10), rgba(5,5,7,0.98));
+      box-shadow: 0 20px 55px rgba(0,0,0,0.85);
+      padding: 1.2rem 1.05rem 1.2rem;
+      transform: translateX(20px);
+      opacity: 0;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .mobile-menu.open .mobile-menu-panel {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .mobile-menu-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .mobile-menu-title {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--gold-soft);
+    }
+
+    .mobile-menu-close {
+      border-radius: 999px;
+      border: 1px solid rgba(245,200,107,0.35);
+      background: transparent;
+      color: var(--gold-soft);
+      font-size: 0.8rem;
+      padding: 0.35rem 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .mobile-menu-links {
+      display: grid;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .mobile-menu-links a,
+    .mobile-menu-links button {
+      width: 100%;
+      text-align: left;
+      border-radius: 14px;
+      border: 1px solid rgba(245,200,107,0.18);
+      background: rgba(10,10,14,0.65);
+      padding: 0.85rem 0.85rem;
+      color: var(--text-main);
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .mobile-menu-links a span,
+    .mobile-menu-links button span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }
+
+    .mobile-menu-cta { margin-top: 0.85rem; }
+    .mobile-menu-cta .btn-primary { width: 100%; justify-content: center; display: inline-flex; }
+
+    .mobile-menu-foot {
+      margin-top: 0.9rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .mobile-menu-foot strong { color: var(--gold-soft); font-weight: 600; }
+
+    /* Hero */
+    .hero { padding: 3.5rem 0 3rem; }
 
     .hero-grid {
       display: grid;
@@ -188,9 +271,8 @@
     }
 
     @media (max-width: 900px) {
-      .hero-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .hero-grid { grid-template-columns: minmax(0, 1fr); }
+      .hero { padding: 2.6rem 0 2.4rem; }
     }
 
     .eyebrow {
@@ -203,7 +285,7 @@
 
     .hero-title {
       font-family: "Playfair Display", serif;
-      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
       line-height: 1.05;
       margin-bottom: 0.9rem;
     }
@@ -271,13 +353,8 @@
       pointer-events: none;
     }
 
-    .badge.reveal {
-      animation: badgeFade 0.8s ease-out forwards;
-    }
-
-    .badge.reveal::before {
-      animation: badgeBeam 1s ease-out forwards;
-    }
+    .badge.reveal { animation: badgeFade 0.8s ease-out forwards; }
+    .badge.reveal::before { animation: badgeBeam 1s ease-out forwards; }
 
     @keyframes badgeBeam {
       0% { left: -130%; opacity: 0; }
@@ -292,6 +369,12 @@
       align-items: center;
       gap: 1rem;
       margin-bottom: 1.1rem;
+    }
+
+    @media (max-width: 520px) {
+      .hero-cta-row { gap: 0.75rem; }
+      .hero-cta-row .btn-primary,
+      .hero-cta-row .btn-ghost { width: 100%; }
     }
 
     .btn-primary {
@@ -361,33 +444,16 @@
       animation: gold-beam-once 1.2s ease-out 0.4s 1 forwards;
     }
 
-    .btn-primary::before {
-      animation-duration: 1.4s;
-      animation-delay: 0.5s;
-    }
+    .btn-primary::before { animation-duration: 1.4s; animation-delay: 0.5s; }
 
     @keyframes gold-beam-once {
-      0% {
-        left: -130%;
-        opacity: 0;
-      }
-      15% {
-        opacity: 1;
-      }
-      50% {
-        left: 10%;
-        opacity: 1;
-      }
-      100% {
-        left: 130%;
-        opacity: 0;
-      }
+      0% { left: -130%; opacity: 0; }
+      15% { opacity: 1; }
+      50% { left: 10%; opacity: 1; }
+      100% { left: 130%; opacity: 0; }
     }
 
-    .hero-footnote {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
+    .hero-footnote { font-size: 0.8rem; color: var(--text-muted); }
 
     .hero-metrics {
       display: grid;
@@ -396,17 +462,8 @@
       margin-top: 1.75rem;
     }
 
-    @media (max-width: 800px) {
-      .hero-metrics {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 520px) {
-      .hero-metrics {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
+    @media (max-width: 800px) { .hero-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 520px) { .hero-metrics { grid-template-columns: minmax(0, 1fr); } }
 
     .metric {
       border-radius: var(--radius-md);
@@ -420,17 +477,8 @@
       transform: translateX(-25px);
     }
 
-    .metric strong {
-      display: block;
-      font-size: 1rem;
-      color: var(--gold);
-      margin-bottom: 0.2rem;
-    }
-
-    .metric span {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
+    .metric strong { display: block; font-size: 1rem; color: var(--gold); margin-bottom: 0.2rem; }
+    .metric span { font-size: 0.75rem; color: var(--text-muted); }
 
     @keyframes metricFadeIn {
       0% { opacity: 0; transform: translateX(-25px); }
@@ -459,13 +507,8 @@
       pointer-events: none;
     }
 
-    .metric.reveal {
-      animation: metricFadeIn 0.8s ease-out forwards;
-    }
-
-    .metric.reveal::before {
-      animation: metricBeam 1.1s ease-out forwards;
-    }
+    .metric.reveal { animation: metricFadeIn 0.8s ease-out forwards; }
+    .metric.reveal::before { animation: metricBeam 1.1s ease-out forwards; }
 
     @keyframes metricBeam {
       0% { left: -130%; opacity: 0; }
@@ -494,10 +537,7 @@
       pointer-events: none;
     }
 
-    .hero-card-inner {
-      position: relative;
-      z-index: 1;
-    }
+    .hero-card-inner { position: relative; z-index: 1; }
 
     .card-label {
       font-size: 0.72rem;
@@ -507,23 +547,10 @@
       margin-bottom: 0.6rem;
     }
 
-    .card-title {
-      font-family: "Playfair Display", serif;
-      font-size: 1.4rem;
-      margin-bottom: 0.35rem;
-    }
+    .card-title { font-family: "Playfair Display", serif; font-size: 1.4rem; margin-bottom: 0.35rem; }
+    .card-sub { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.9rem; }
 
-    .card-sub {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      margin-bottom: 0.9rem;
-    }
-
-    .tiers-mini {
-      display: grid;
-      gap: 0.7rem;
-      margin-bottom: 1.1rem;
-    }
+    .tiers-mini { display: grid; gap: 0.7rem; margin-bottom: 1.1rem; }
 
     .mini-tier {
       border-radius: 12px;
@@ -536,46 +563,19 @@
       gap: 0.9rem;
     }
 
-    .mini-tier-main {
-      font-size: 0.88rem;
-      font-weight: 500;
-    }
+    .mini-tier-main { font-size: 0.88rem; font-weight: 500; }
+    .mini-tier-tagline { font-size: 0.74rem; color: var(--text-muted); }
 
-    .mini-tier-tagline {
-      font-size: 0.74rem;
-      color: var(--text-muted);
-    }
+    .mini-tier-price { text-align: right; font-size: 0.86rem; }
+    .mini-tier-price strong { color: var(--gold); display: block; }
+    .mini-tier-price span { font-size: 0.7rem; color: var(--text-muted); }
 
-    .mini-tier-price {
-      text-align: right;
-      font-size: 0.86rem;
-    }
-
-    .mini-tier-price strong {
-      color: var(--gold);
-      display: block;
-    }
-
-    .mini-tier-price span {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-    }
-
-    .card-note {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 0.2rem;
-    }
+    .card-note { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.2rem; }
 
     /* Sections */
-    section {
-      padding: 3rem 0;
-    }
+    section { padding: 3rem 0; }
 
-    .section-header {
-      max-width: 40rem;
-      margin-bottom: 1.9rem;
-    }
+    .section-header { max-width: 40rem; margin-bottom: 1.9rem; }
 
     .section-eyebrow {
       font-size: 0.76rem;
@@ -585,16 +585,18 @@
       margin-bottom: 0.35rem;
     }
 
-    .section-title {
-      font-family: "Playfair Display", serif;
-      font-size: 1.6rem;
-      margin-bottom: 0.4rem;
-    }
+    .section-title { font-family: "Playfair Display", serif; font-size: 1.6rem; margin-bottom: 0.4rem; }
+    .section-sub { font-size: 0.92rem; color: var(--text-muted); }
 
-    .section-sub {
-      font-size: 0.92rem;
+    /* USD note */
+    .usd-note {
+      margin: -0.65rem 0 1.35rem;
+      font-size: 0.74rem;
       color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
+    .usd-note strong { color: var(--gold-soft); font-weight: 600; }
 
     /* Why */
     .why-grid {
@@ -603,27 +605,12 @@
       gap: 2.2rem;
     }
 
-    @media (max-width: 900px) {
-      .why-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+    @media (max-width: 900px) { .why-grid { grid-template-columns: 1fr; } }
 
-    .why-text p {
-      font-size: 0.94rem;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-    }
+    .why-text p { font-size: 0.94rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .why-text p + p { margin-top: 0.25rem; }
 
-    .why-text p + p {
-      margin-top: 0.25rem;
-    }
-
-    .why-list {
-      margin-top: 0.7rem;
-      margin-bottom: 1.8rem;
-      list-style: none;
-    }
+    .why-list { margin-top: 0.7rem; margin-bottom: 1.8rem; list-style: none; }
 
     .why-list li {
       display: flex;
@@ -634,6 +621,8 @@
       margin-bottom: 0.4rem;
       white-space: nowrap;
     }
+
+    @media (max-width: 600px) { .why-list li { white-space: normal; } }
 
     .why-list span.bullet {
       width: 10px;
@@ -653,23 +642,10 @@
       box-shadow: var(--shadow-soft);
     }
 
-    .why-card h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.7rem;
-    }
+    .why-card h3 { font-size: 1.1rem; margin-bottom: 0.7rem; }
+    .why-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.5rem; }
 
-    .why-card p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .why-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.6rem;
-    }
+    .why-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
 
     .why-pill {
       font-size: 0.72rem;
@@ -712,13 +688,8 @@
       pointer-events: none;
     }
 
-    .why-pill.reveal {
-      animation: pillFadeIn 0.9s ease-out forwards;
-    }
-
-    .why-pill.reveal::before {
-      animation: pillBeamSweep 1.1s ease-out forwards;
-    }
+    .why-pill.reveal { animation: pillFadeIn 0.9s ease-out forwards; }
+    .why-pill.reveal::before { animation: pillBeamSweep 1.1s ease-out forwards; }
 
     @keyframes pillBeamSweep {
       0% { right: -130%; opacity: 0; }
@@ -728,9 +699,7 @@
     }
 
     /* Tiers */
-    #tiers {
-      margin-top: 3rem;
-    }
+    #tiers { margin-top: 3rem; }
 
     .tiers-grid {
       display: grid;
@@ -738,11 +707,7 @@
       gap: 1.4rem;
     }
 
-    @media (max-width: 960px) {
-      .tiers-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+    @media (max-width: 960px) { .tiers-grid { grid-template-columns: 1fr; } }
 
     .tier-card {
       border-radius: var(--radius-lg);
@@ -766,10 +731,7 @@
       background: radial-gradient(circle at top, rgba(245,200,107,0.12), rgba(7,7,10,0.98));
     }
 
-    .tier-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .tier-card.visible { opacity: 1; transform: translateY(0); }
 
     .tier-card::before {
       content: "";
@@ -792,9 +754,7 @@
       pointer-events: none;
     }
 
-    .tier-card.visible::before {
-      animation: tierBeam 1.2s ease-out forwards;
-    }
+    .tier-card.visible::before { animation: tierBeam 1.2s ease-out forwards; }
 
     @keyframes tierBeam {
       0% { right: -130%; opacity: 0; }
@@ -803,49 +763,40 @@
       100% { right: 130%; opacity: 0; }
     }
 
-    .tier-card:nth-child(1) {
-      transition-delay: 0.05s;
-    }
-    .tier-card:nth-child(2) {
-      transition-delay: 0.15s;
-    }
-    .tier-card:nth-child(3) {
-      transition-delay: 0.25s;
-    }
+    .tier-card:nth-child(1) { transition-delay: 0.05s; }
+    .tier-card:nth-child(2) { transition-delay: 0.15s; }
+    .tier-card:nth-child(3) { transition-delay: 0.25s; }
 
-    .tier-top {
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-    }
+    .tier-top { display: flex; flex-direction: column; gap: 0.35rem; }
 
-    @media (min-width: 960px) {
-      .tier-top {
-        min-height: 230px;
-      }
-    }
+    @media (min-width: 960px) { .tier-top { min-height: 230px; } }
 
     .tier-tag {
       font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: var(--gold-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      flex-wrap: wrap;
     }
 
-    .tier-name {
-      font-family: "Playfair Display", serif;
-      font-size: 1.25rem;
+    .tier-popular {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.14rem 0.45rem;
+      border-radius: 999px;
+      border: 1px solid rgba(245,200,107,0.45);
+      color: var(--gold-soft);
+      background: rgba(5,5,7,0.55);
     }
 
-    .tier-price {
-      font-size: 1.1rem;
-      color: var(--gold);
-    }
+    .tier-name { font-family: "Playfair Display", serif; font-size: 1.25rem; }
+    .tier-price { font-size: 1.1rem; color: var(--gold); }
 
-    .tier-desc {
-      font-size: 0.86rem;
-      color: var(--text-muted);
-    }
+    .tier-desc { font-size: 0.86rem; color: var(--text-muted); }
 
     .tier-list {
       list-style: none;
@@ -854,16 +805,8 @@
       margin-top: 0.4rem;
     }
 
-    .tier-list li {
-      display: flex;
-      gap: 0.4rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .tier-list li span.icon {
-      color: var(--gold-soft);
-      margin-top: 0.04rem;
-    }
+    .tier-list li { display: flex; gap: 0.4rem; margin-bottom: 0.25rem; }
+    .tier-list li span.icon { color: var(--gold-soft); margin-top: 0.04rem; }
 
     .tier-bottom {
       margin-top: auto;
@@ -874,6 +817,10 @@
       gap: 0.75rem;
       font-size: 0.78rem;
       color: var(--text-muted);
+    }
+
+    @media (max-width: 520px) {
+      .tier-bottom { flex-direction: column; align-items: flex-start; gap: 0.55rem; }
     }
 
     .tier-cta {
@@ -892,23 +839,9 @@
       text-align: left;
     }
 
-    .old-price {
-      text-decoration: line-through;
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      margin-right: 0.35rem;
-      opacity: 0.85;
-    }
-
-    .new-price {
-      color: var(--gold);
-      font-weight: 700;
-      font-size: 1.35rem;
-    }
-
-    .mini-tier .new-price {
-      font-size: 1.1rem;
-    }
+    .old-price { text-decoration: line-through; color: var(--text-muted); font-size: 0.8rem; margin-right: 0.35rem; opacity: 0.85; }
+    .new-price { color: var(--gold); font-weight: 700; font-size: 1.35rem; }
+    .mini-tier .new-price { font-size: 1.1rem; }
 
     .tier-price-note {
       display: flex;
@@ -920,10 +853,7 @@
       margin-top: 0.3rem;
     }
 
-    .tier-price-date {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
+    .tier-price-date { font-size: 0.75rem; color: var(--text-muted); }
 
     .holiday-badge {
       display: inline-flex;
@@ -940,15 +870,10 @@
       white-space: nowrap;
     }
 
-    .holiday-badge span.icon {
-      margin-right: 0.25rem;
-      font-size: 0.8rem;
-    }
+    .holiday-badge span.icon { margin-right: 0.25rem; font-size: 0.8rem; }
 
     /* Comparison */
-    #comparison {
-      padding-top: 4rem;
-    }
+    #comparison { padding-top: 4rem; }
 
     .comparison {
       border-radius: var(--radius-lg);
@@ -974,54 +899,20 @@
       white-space: nowrap;
     }
 
-    .comparison th {
-      font-weight: 600;
-      color: var(--text-main);
-    }
+    .comparison th { font-weight: 600; color: var(--text-main); }
+    .comparison thead th { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; }
+    .comparison tbody td:first-child { color: var(--text-muted); }
 
-    .comparison thead th {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
+    .check { color: var(--gold-soft); font-weight: 600; }
 
-    .comparison tbody td:first-child {
-      color: var(--text-muted);
-    }
-
-    .check {
-      color: var(--gold-soft);
-      font-weight: 600;
-    }
-
-    .note {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 0.75rem;
-    }
+    .note { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.75rem; }
 
     /* Process */
-    #process {
-      padding-top: 4rem;
-    }
+    #process { padding-top: 4rem; }
 
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    @media (max-width: 960px) {
-      .steps {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 600px) {
-      .steps {
-        grid-template-columns: 1fr;
-      }
-    }
+    .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+    @media (max-width: 960px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 600px) { .steps { grid-template-columns: 1fr; } }
 
     .step-card {
       border-radius: var(--radius-md);
@@ -1048,15 +939,8 @@
       margin-bottom: 0.45rem;
     }
 
-    .step-title {
-      font-size: 0.92rem;
-      margin-bottom: 0.3rem;
-    }
-
-    .step-text {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
+    .step-title { font-size: 0.92rem; margin-bottom: 0.3rem; }
+    .step-text { font-size: 0.82rem; color: var(--text-muted); }
 
     @keyframes stepFade {
       0% { opacity: 0; transform: translateY(20px); }
@@ -1085,13 +969,8 @@
       pointer-events: none;
     }
 
-    .step-card.reveal {
-      animation: stepFade 0.9s ease-out forwards;
-    }
-
-    .step-card.reveal::before {
-      animation: stepBeam 1.1s ease-out forwards;
-    }
+    .step-card.reveal { animation: stepFade 0.9s ease-out forwards; }
+    .step-card.reveal::before { animation: stepBeam 1.1s ease-out forwards; }
 
     @keyframes stepBeam {
       0% { left: -130%; opacity: 0; }
@@ -1106,9 +985,7 @@
     .steps .step-card:nth-child(4).reveal { animation-delay: 0.45s; }
 
     /* CTA */
-    .cta {
-      padding: 3rem 0 3.5rem;
-    }
+    .cta { padding: 3rem 0 3.5rem; }
 
     .cta-box {
       border-radius: 22px;
@@ -1119,18 +996,8 @@
       text-align: center;
     }
 
-    .cta-title {
-      font-family: "Playfair Display", serif;
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .cta-sub {
-      font-size: 0.96rem;
-      color: var(--text-muted);
-      max-width: 32rem;
-      margin: 0 auto 1.6rem;
-    }
+    .cta-title { font-family: "Playfair Display", serif; font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .cta-sub { font-size: 0.96rem; color: var(--text-muted); max-width: 32rem; margin: 0 auto 1.6rem; }
 
     .cta-row {
       display: flex;
@@ -1140,14 +1007,15 @@
       margin-bottom: 0.9rem;
     }
 
+    @media (max-width: 520px) {
+      .cta-row .btn-primary,
+      .cta-row .btn-ghost { width: 100%; }
+    }
+
     .cta-foot {
       font-size: 0.78rem;
       color: var(--text-muted);
-    }
-
-    .cta-foot a {
-      color: var(--gold-soft);
-      text-decoration: underline;
+      margin-top: 0.6rem; /* tightened spacing below buttons */
     }
 
     /* Tier modal */
@@ -1160,15 +1028,9 @@
       z-index: 50;
     }
 
-    .tier-modal.open {
-      display: flex;
-    }
+    .tier-modal.open { display: flex; }
 
-    .tier-modal-backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.7);
-    }
+    .tier-modal-backdrop { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.7); }
 
     .tier-modal-panel {
       position: relative;
@@ -1191,23 +1053,10 @@
       z-index: -1;
     }
 
-    .tier-modal-panel h3 {
-      font-family: "Playfair Display", serif;
-      font-size: 1.3rem;
-      margin-bottom: 0.4rem;
-    }
+    .tier-modal-panel h3 { font-family: "Playfair Display", serif; font-size: 1.3rem; margin-bottom: 0.4rem; }
+    .tier-modal-panel p { font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1rem; }
 
-    .tier-modal-panel p {
-      font-size: 0.86rem;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-    }
-
-    .tier-modal-options {
-      display: grid;
-      gap: 0.6rem;
-      margin-bottom: 1rem;
-    }
+    .tier-modal-options { display: grid; gap: 0.6rem; margin-bottom: 1rem; }
 
     .tier-modal-btn {
       display: block;
@@ -1221,13 +1070,10 @@
       position: relative;
       overflow: hidden;
       cursor: pointer;
+      transition: box-shadow 0.18s ease, border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
     }
 
-    .tier-modal-btn span {
-      display: block;
-      font-size: 0.78rem;
-      color: var(--gold-soft);
-    }
+    .tier-modal-btn span { display: block; font-size: 0.78rem; color: var(--gold-soft); }
 
     .tier-modal-btn.featured {
       border-color: rgba(245,200,107,0.85);
@@ -1236,32 +1082,29 @@
 
     .tier-modal-btn:hover {
       background: linear-gradient(135deg, rgba(245,200,107,0.26), #050506);
+      transform: translateY(-1px);
     }
 
+    /* Amplified selected glow (luxury, but obvious) */
     .tier-modal-btn.selected {
       border-color: rgba(245,200,107,1);
-      box-shadow: 0 0 32px rgba(245,200,107,0.55);
+      box-shadow:
+        0 0 0 1px rgba(245,200,107,0.55),
+        0 0 24px rgba(245,200,107,0.35),
+        0 0 60px rgba(245,200,107,0.22);
+      background: linear-gradient(135deg, rgba(245,200,107,0.24), rgba(5,5,7,0.96));
     }
 
-    .tier-modal-close {
+    .tier-modal-btn.selected::after {
+      content: "";
+      position: absolute;
+      inset: 1px;
       border-radius: 999px;
-      border: 1px solid rgba(245,200,107,0.4);
-      background: transparent;
-      color: var(--gold-soft);
-      font-size: 0.8rem;
-      padding: 0.45rem 1.1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      cursor: pointer;
-      width: 100%;
+      box-shadow: inset 0 0 18px rgba(245,200,107,0.16);
+      pointer-events: none;
     }
 
-    #tierForm label {
-      display: block;
-      margin-bottom: 0.35rem;
-      font-size: 0.78rem;
-      color: var(--gold-soft);
-    }
+    #tierForm label { display: block; margin-bottom: 0.35rem; font-size: 0.78rem; color: var(--gold-soft); }
 
     #tierForm input {
       width: 100%;
@@ -1275,12 +1118,7 @@
       font-size: 0.86rem;
     }
 
-    .tier-submit-button {
-      display: block;
-      width: 100%;
-      text-align: center;
-      margin-top: 0.2rem;
-    }
+    .tier-submit-button { display: block; width: 100%; text-align: center; margin-top: 0.2rem; }
 
     /* Contact modal */
     .contact-modal {
@@ -1292,9 +1130,7 @@
       z-index: 60;
     }
 
-    .contact-modal.open {
-      display: flex;
-    }
+    .contact-modal.open { display: flex; }
 
     .contact-backdrop {
       position: absolute;
@@ -1313,6 +1149,7 @@
       border: 1px solid rgba(245,200,107,0.45);
       box-shadow: 0 22px 50px rgba(0,0,0,0.85);
       z-index: 1;
+      margin: 0 1.25rem;
     }
 
     .contact-panel h3 {
@@ -1322,18 +1159,9 @@
       color: var(--gold);
     }
 
-    .contact-panel p {
-      font-size: 0.86rem;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-    }
+    .contact-panel p { font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1rem; }
 
-    #contactForm label {
-      display: block;
-      margin-bottom: 0.35rem;
-      font-size: 0.78rem;
-      color: var(--gold-soft);
-    }
+    #contactForm label { display: block; margin-bottom: 0.35rem; font-size: 0.78rem; color: var(--gold-soft); }
 
     #contactForm input,
     #contactForm textarea {
@@ -1348,29 +1176,9 @@
       font-size: 0.86rem;
     }
 
-    #contactForm textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
+    #contactForm textarea { resize: vertical; min-height: 100px; }
 
-    .contact-panel #contactForm .btn-primary {
-      display: block;
-      margin: 0.5rem auto 0.2rem;
-    }
-
-    .contact-close {
-      margin-top: 0.6rem;
-      width: 100%;
-      border-radius: 999px;
-      border: 1px solid rgba(245,200,107,0.4);
-      background: transparent;
-      color: var(--gold-soft);
-      padding: 0.55rem;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      cursor: pointer;
-      letter-spacing: 0.14em;
-    }
+    .contact-panel #contactForm .btn-primary { display: block; margin: 0.5rem auto 0.2rem; }
 
     /* Footer */
     footer {
@@ -1389,9 +1197,11 @@
       gap: 0.6rem;
     }
 
-    footer a {
+    .footer-email {
       color: var(--gold-soft);
       text-decoration: underline;
+      cursor: pointer;
+      white-space: nowrap;
     }
   </style>
 </head>
@@ -1403,13 +1213,14 @@
       <div class="nav-left">
         <div class="nav-logo-stack">
           <img
-            src="https://i.ibb.co/1Y1L6mnS/bizready.png"
+            src="https://i.ibb.co/Z1z2RwLj/bizready-1.png"
             alt="BizReady"
             class="nav-logo"
           />
           <div class="nav-logo-sub">Business Starter Pack™</div>
         </div>
       </div>
+
       <nav class="nav-links">
         <a href="#why">Why This</a>
         <a href="#tiers">Tiers</a>
@@ -1420,15 +1231,43 @@
           Apply for Your Free Consultation
         </button>
       </nav>
-      <button class="nav-mobile-toggle" onclick="alert('On a real build this will open a mobile menu.')">☰</button>
+
+      <button class="nav-mobile-toggle" aria-label="Open menu" onclick="openMobileMenu()">☰</button>
     </div>
   </header>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-backdrop" onclick="closeMobileMenu()"></div>
+    <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+      <div class="mobile-menu-top">
+        <div class="mobile-menu-title">Menu</div>
+        <button class="mobile-menu-close" onclick="closeMobileMenu()">Close</button>
+      </div>
+
+      <div class="mobile-menu-links">
+        <a href="#why" onclick="closeMobileMenu()">Why This<span>What the program delivers</span></a>
+        <a href="#tiers" onclick="closeMobileMenu()">Tiers<span>Pick your launch package</span></a>
+        <a href="#comparison" onclick="closeMobileMenu()">Comparison<span>See what’s included</span></a>
+        <a href="#process" onclick="closeMobileMenu()">Process<span>How the build works</span></a>
+        <button type="button" onclick="closeMobileMenu(); openContactModal();">Contact Us<span>Questions or custom requests</span></button>
+      </div>
+
+      <div class="mobile-menu-cta">
+        <button class="btn-primary" onclick="closeMobileMenu(); openTierModal();">Apply for Free Consultation</button>
+      </div>
+
+      <div class="mobile-menu-foot">
+        <strong>Tip:</strong> For the smoothest experience, apply first — we’ll follow up to align expectations and map the right tier.
+      </div>
+    </div>
+  </div>
 
   <!-- HERO -->
   <main class="shell hero">
     <div class="hero-grid">
       <div>
-        <div class="eyebrow">Done-For-You Launch</div>
+        <div class="eyebrow">A DONE-FOR-YOU PROGRAM</div>
         <h2 class="hero-title">
           From idea to <span class="highlight">revenue-ready business</span><br />in days, not months.
         </h2>
@@ -1444,12 +1283,8 @@
           <div class="badge">Free Consultation</div>
         </div>
         <div class="hero-cta-row">
-          <button class="btn-primary" onclick="openTierModal()">
-            Build Your Business Now
-          </button>
-          <button class="btn-ghost" onclick="document.getElementById('tiers').scrollIntoView({behavior:'smooth'})">
-            View Packages
-          </button>
+          <button class="btn-primary" onclick="openTierModal()">Build Your Business Now</button>
+          <button class="btn-ghost" onclick="document.getElementById('tiers').scrollIntoView({behavior:'smooth'})">View Packages</button>
         </div>
         <div class="hero-footnote">
           Average build window is typically 1–3 weeks depending on scope and responsiveness.
@@ -1457,7 +1292,7 @@
         </div>
         <div class="hero-metrics">
           <div class="metric">
-            <strong>$4.8k – $18k+</strong>
+            <strong>$5k – $15k+</strong>
             <span>Typical agency cost to piece all of this together.</span>
           </div>
           <div class="metric">
@@ -1505,7 +1340,7 @@
             <div class="mini-tier">
               <div>
                 <div class="mini-tier-main">Tier 3 · Executive Launch Pack</div>
-                <div class="mini-tier-tagline">Brand, site & financial setup</div>
+                <div class="mini-tier-tagline">Custom CRM · Accounting · AI</div>
               </div>
               <div class="mini-tier-price">
                 <span class="old-price">$1,895</span>
@@ -1515,7 +1350,7 @@
             </div>
           </div>
           <div class="card-note">
-            All required domains, hosting, security and design assets are fully covered – no surprise tech bills.
+            All required domains, hosting, security and design assets are fully covered.
           </div>
         </div>
       </aside>
@@ -1555,12 +1390,15 @@
           booking clients and proudly sending people to your website the moment we hand it off.
         </p>
         <div class="why-pills">
-          <div class="why-pill">Custom logo & brand look</div>
-          <div class="why-pill">Website (1–10 pages)</div>
-          <div class="why-pill">Domain & hosting covered</div>
+          <div class="why-pill">Custom brand</div>
+          <div class="why-pill">Website</div>
+          <div class="why-pill">Domain and host</div>
+          <div class="why-pill">SEO</div>
           <div class="why-pill">AI inclusion</div>
-          <div class="why-pill">Lead capture & contact systems</div>
-          <div class="why-pill">Business banking integration (T3)</div>
+          <div class="why-pill">Lead capture</div>
+          <div class="why-pill">Custom CRM</div>
+          <div class="why-pill">Email</div>
+          <div class="why-pill">Invoice platform</div>
           <div class="why-pill">Cards & brochure (T2+)</div>
         </div>
       </div>
@@ -1578,6 +1416,8 @@
       </p>
     </div>
 
+    <div class="usd-note"><strong>Note:</strong> All prices shown are in USD.</div>
+
     <div class="tiers-grid">
       <!-- Tier 1 -->
       <article class="tier-card">
@@ -1588,9 +1428,7 @@
             <span class="old-price">$649</span>
             <span class="new-price">$549</span>
             <span class="tier-price-note">
-              <span class="holiday-badge">
-                <span class="icon">🎀</span> $100 holiday savings
-              </span>
+              <span class="holiday-badge"><span class="icon">🎀</span> $100 holiday savings</span>
               <span class="tier-price-date">Ends Jan 31, 2026</span>
             </span>
           </div>
@@ -1600,12 +1438,16 @@
         </div>
 
         <ul class="tier-list">
-          <li><span class="icon">✓</span> 1-page, conversion-focused website</li>
-          <li><span class="icon">✓</span> Clear call-to-action (CTA) layout</li>
-          <li><span class="icon">✓</span> Custom logo and brand look (variants included)</li>
+          <li><span class="icon">✓</span> Landing page</li>
+          <li><span class="icon">✓</span> Call-to-action layout</li>
+          <li><span class="icon">✓</span> Custom branding (with variants)</li>
           <li><span class="icon">✓</span> Domain and Hosting (fees covered)</li>
           <li><span class="icon">✓</span> SEO fundamentals and setup</li>
-          <li><span class="icon">✓</span> Lead capture / contact form integration</li>
+          <li><span class="icon">✓</span> Lead capture</li>
+          <li><span class="icon">✓</span> Payment setup and integration</li>
+          <li><span class="icon">✓</span> Email setup and forwarding</li>
+          <li><span class="icon">✓</span> Calendar booking</li>
+          <li><span class="icon">✓</span> Privacy Policy + Terms of Service</li>
           <li><span class="icon">✓</span> 30-day standard support</li>
         </ul>
         <div class="tier-bottom">
@@ -1617,15 +1459,13 @@
       <!-- Tier 2 -->
       <article class="tier-card featured">
         <div class="tier-top">
-          <div class="tier-tag">Tier 2</div>
+          <div class="tier-tag">Tier 2 <span class="tier-popular">POPULAR</span></div>
           <div class="tier-name">Collaborative Launch Pack</div>
           <div class="tier-price">
             <span class="old-price">$1,395</span>
             <span class="new-price">$995</span>
             <span class="tier-price-note">
-              <span class="holiday-badge">
-                <span class="icon">🎀</span> $400 holiday savings
-              </span>
+              <span class="holiday-badge"><span class="icon">🎀</span> $400 holiday savings</span>
               <span class="tier-price-date">Ends Jan 31, 2026</span>
             </span>
           </div>
@@ -1637,14 +1477,12 @@
         <ul class="tier-list">
           <li><span class="icon">✓</span> Everything in Tier 1</li>
           <li><span class="icon">✓</span> Up to 5-page website</li>
-          <li><span class="icon">✓</span> Visual business layout mapped</li>
-          <li><span class="icon">✓</span> Pricing breakdown &amp; offer structure</li>
-          <li><span class="icon">✓</span> 1-on-1 consultation &amp; launch strategy</li>
           <li><span class="icon">✓</span> Professional insight</li>
           <li><span class="icon">✓</span> Personal agent</li>
           <li><span class="icon">✓</span> Business cards &amp; brochure design</li>
-          <li><span class="icon">✓</span> Invoice template</li>
-          <li><span class="icon">✓</span> Payment setup</li>
+          <li><span class="icon">✓</span> Professional invoicing</li>
+          <li><span class="icon">✓</span> Recurring invoices</li>
+          <li><span class="icon">✓</span> Lead management</li>
           <li><span class="icon">✓</span> 30-day standard support</li>
         </ul>
         <div class="tier-bottom">
@@ -1662,9 +1500,7 @@
             <span class="old-price">$1,895</span>
             <span class="new-price">$1,395</span>
             <span class="tier-price-note">
-              <span class="holiday-badge">
-                <span class="icon">🎀</span> $500 holiday savings
-              </span>
+              <span class="holiday-badge"><span class="icon">🎀</span> $500 holiday savings</span>
               <span class="tier-price-date">Ends Jan 31, 2026</span>
             </span>
           </div>
@@ -1675,18 +1511,15 @@
 
         <ul class="tier-list">
           <li><span class="icon">✓</span> Everything in Tier 1 &amp; Tier 2</li>
-          <li><span class="icon">✓</span> Business banking setup</li>
-          <li><span class="icon">✓</span> Professional invoicing system</li>
           <li><span class="icon">✓</span> Accounting setup</li>
+          <li><span class="icon">✓</span> Custom CRM</li>
+          <li><span class="icon">✓</span> Price and offer structure</li>
           <li><span class="icon">✓</span> AI inclusion</li>
-          <li><span class="icon">✓</span> Automated onboarding workflow</li>
-          <li><span class="icon">✓</span> Executive Launch Playbook</li>
-          <li><span class="icon">✓</span> Marketing Starter Kit</li>
           <li><span class="icon">✓</span> 30-day priority support</li>
         </ul>
         <div class="tier-bottom">
           <div>For founders treating this like a real company from day one.</div>
-          <button type="button" class="tier-cta" onclick="openTierModal()">Go all-in with Tier 3</button>
+          <button type="button" class="tier-cta" onclick="openTierModal()">All-in with Tier 3</button>
         </div>
       </article>
     </div>
@@ -1707,7 +1540,7 @@
       <table>
         <thead>
         <tr>
-          <th>Deliverable / Cost Category</th>
+          <th>&nbsp;</th>
           <th>Tier 1</th>
           <th>Tier 2</th>
           <th>Tier 3</th>
@@ -1724,7 +1557,7 @@
           <td>Website build & layout</td>
           <td>1-page</td>
           <td>Up to 5 pages</td>
-          <td>Expanded build as needed</td>
+          <td>Expanded</td>
         </tr>
         <tr>
           <td>Domain, hosting & SSL (1 year)</td>
@@ -1746,7 +1579,7 @@
         </tr>
         <tr>
           <td>1-on-1 collaboration & consults</td>
-          <td>Email / chat only</td>
+          <td>Email / chat</td>
           <td>Personal agent</td>
           <td>Personal agent</td>
         </tr>
@@ -1757,28 +1590,34 @@
           <td class="check">Included</td>
         </tr>
         <tr>
-          <td>Business banking guidance & setup support</td>
+          <td>AI inclusion and guidance</td>
+          <td>–</td>
+          <td>–</td>
+          <td class="check">Covered</td>
+        </tr>
+        <tr>
+          <td>Custom CRM</td>
           <td>–</td>
           <td>–</td>
           <td class="check">Included</td>
         </tr>
         <tr>
-          <td>AI inclusion</td>
+          <td>Accounting setup</td>
           <td>–</td>
           <td>–</td>
           <td class="check">Included</td>
         </tr>
         <tr>
-          <td>Professional invoice</td>
+          <td>Professional invoicing</td>
           <td>–</td>
-          <td class="check">Template</td>
-          <td class="check">System</td>
+          <td class="check">Included</td>
+          <td class="check">Included</td>
         </tr>
         <tr>
           <td>Payment setup &amp; integration</td>
-          <td>–</td>
-          <td class="check">Setup</td>
-          <td class="check">Integration</td>
+          <td class="check">Included</td>
+          <td class="check">Included</td>
+          <td class="check">Included</td>
         </tr>
         <tr>
           <td>Post-launch support window</td>
@@ -1787,17 +1626,30 @@
           <td>30-day priority</td>
         </tr>
         <tr>
+          <td>Ongoing support</td>
+          <td>Optional</td>
+          <td>Optional</td>
+          <td>Optional</td>
+        </tr>
+        <tr>
           <td>Core tech, licenses & platform fees</td>
           <td class="check">Covered</td>
           <td class="check">Covered</td>
           <td class="check">Covered</td>
         </tr>
+        <tr>
+          <td>Privacy Policy + Terms of Service</td>
+          <td class="check">Included</td>
+          <td class="check">Included</td>
+          <td class="check">Included</td>
+        </tr>
         </tbody>
       </table>
       <p class="note">
-        When purchased separately through agencies, this combination of branding, web development, consulting,
-        integrations and assets commonly runs between <strong>$4,800 and $18,000+</strong>.
-        BizReady is designed to feel like a steal – without cutting corners on quality.
+        When purchased separately through agencies or freelancers, this combination of branding, web development,
+        consulting, integrations, and assets typically adds up to <strong>$5,000–$15,000+</strong> — often spread across
+        multiple vendors and timelines. BizReady consolidates that entire stack into one guided, done-for-you build, so it
+        feels like a steal <strong>without cutting corners on quality or ownership</strong>.
       </p>
     </div>
   </section>
@@ -1834,15 +1686,15 @@
         <div class="step-title">Design, build & integrate</div>
         <p class="step-text">
           BizReady builds your brand, website and systems. You’ll receive milestones to review – not tutorials to
-          complete – and can request refinements within your support level.
+          complete – and can request refinements.
         </p>
       </div>
       <div class="step-card">
         <div class="step-num">4</div>
         <div class="step-title">Handoff & launch with confidence</div>
         <p class="step-text">
-          Final assets, logins and documentation are transferred to you, ready to launch. Your 30-day support window
-          ensures you’re not left guessing after go-live.
+          Final assets, logins and documentation are transferred to you, BizReady. Your 30-day support window ensures
+          you’re not left guessing after go-live.
         </p>
       </div>
     </div>
@@ -1854,20 +1706,16 @@
       <div class="section-eyebrow">Ready to move?</div>
       <h2 class="cta-title">Launch a business built to make an impression.</h2>
       <p class="cta-sub">
-        If you’re done collecting courses and ready to hold real assets in your hands – a brand, a website, a system –
+        If you’re done collecting courses and ready to hold real assets in your hands – a brand, a system – 
         the Business Starter Pack is built for you. Apply for a free consultation, choose your tier, and let BizReady
         do the heavy lifting.
       </p>
       <div class="cta-row">
         <button class="btn-primary" onclick="openTierModal()">Build Your Business Now</button>
-        <button class="btn-ghost" onclick="document.getElementById('tiers').scrollIntoView({behavior:'smooth'})">
-          Review all tiers again
-        </button>
+        <button class="btn-ghost" onclick="document.getElementById('tiers').scrollIntoView({behavior:'smooth'})">Review all tiers again</button>
       </div>
       <div class="cta-foot">
-        Most builds are completed within 1–3 weeks based on scope and collaboration flow.
-        For clients needing a rapid launch, expedited production windows — with turnaround times
-        as fast as 48 hours — are available at an additional cost.
+        Through consultation, pricing is tailored to your needs, goals, and budget — our job is to guide you to the right setup and push you toward a strong, confident launch.
       </div>
     </div>
   </section>
@@ -1879,7 +1727,7 @@
       <div>
         All assets are delivered to and owned by the client upon project completion.
         Questions? Email
-        <a href="mailto:admin@bizready.net">admin@bizready.net</a>.
+        <span class="footer-email" onclick="openContactModal()">admin@bizready.net</span>.
       </div>
     </div>
   </footer>
@@ -1891,36 +1739,27 @@
   <div class="tier-modal-panel">
     <h3>Select your build tier</h3>
     <p>
-      Choose the package that best matches your goals, then apply for a free consultation.
-      During this call, we’ll walk through your vision, clarify what’s included in each tier,
-      and ensure expectations are perfectly aligned before moving forward.
+      Pricing is tailored through consultation based on your needs, priorities, and budget — and we’re here to help you choose the smartest path to success.
     </p>
 
     <form id="tierForm">
       <div class="tier-modal-options">
-        <button type="button"
-                class="tier-modal-btn"
-                data-tier="Tier 1 · Essentials Launch Pack">
+        <button type="button" class="tier-modal-btn" data-tier="Tier 1 · Essentials Launch Pack">
           Tier 1 · Essentials Launch Pack
           <span>$549 · $100 holiday savings</span>
         </button>
 
-        <button type="button"
-                class="tier-modal-btn featured"
-                data-tier="Tier 2 · Collaborative Launch Pack">
+        <button type="button" class="tier-modal-btn featured" data-tier="Tier 2 · Collaborative Launch Pack">
           Tier 2 · Collaborative Launch Pack
           <span>$995 · $400 holiday savings</span>
         </button>
 
-        <button type="button"
-                class="tier-modal-btn"
-                data-tier="Tier 3 · Executive Launch Pack">
+        <button type="button" class="tier-modal-btn" data-tier="Tier 3 · Executive Launch Pack">
           Tier 3 · Executive Launch Pack
           <span>$1,395 · $500 holiday savings</span>
         </button>
       </div>
 
-      <!-- Hidden field to store chosen tier -->
       <input type="hidden" id="selected-tier" name="selected_tier" />
 
       <div class="tier-modal-fields">
@@ -1934,9 +1773,7 @@
         <input type="tel" id="tier-phone" name="user_phone" placeholder="Your phone number" />
       </div>
 
-      <button type="submit" class="btn-primary tier-submit-button">
-        Apply for Free Consultation
-      </button>
+      <button type="submit" class="btn-primary tier-submit-button">Apply for Free Consultation</button>
     </form>
   </div>
 </div>
@@ -2040,17 +1877,44 @@
   // Modal controls
   function openTierModal() {
     document.getElementById('tierModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
   function closeTierModal() {
     document.getElementById('tierModal').classList.remove('open');
+    document.body.style.overflow = '';
   }
 
   function openContactModal() {
     document.getElementById('contactModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
   function closeContactModal() {
     document.getElementById('contactModal').classList.remove('open');
+    document.body.style.overflow = '';
   }
+
+  // Mobile menu controls
+  function openMobileMenu() {
+    const mm = document.getElementById('mobileMenu');
+    mm.classList.add('open');
+    mm.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobileMenu() {
+    const mm = document.getElementById('mobileMenu');
+    mm.classList.remove('open');
+    mm.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  // Close overlays on ESC
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeMobileMenu();
+      closeTierModal();
+      closeContactModal();
+    }
+  });
 
   // EmailJS init
   (function(){

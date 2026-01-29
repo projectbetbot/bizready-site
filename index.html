@@ -839,39 +839,6 @@
       text-align: left;
     }
 
-    .old-price { text-decoration: line-through; color: var(--text-muted); font-size: 0.8rem; margin-right: 0.35rem; opacity: 0.85; }
-    .new-price { color: var(--gold); font-weight: 700; font-size: 1.35rem; }
-    .mini-tier .new-price { font-size: 1.1rem; }
-
-    .tier-price-note {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.15rem;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-top: 0.3rem;
-    }
-
-    .tier-price-date { font-size: 0.75rem; color: var(--text-muted); }
-
-    .holiday-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.15rem 0.55rem;
-      border-radius: 999px;
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      background: linear-gradient(135deg, #5b1016, #b62332);
-      color: #ffe7c2;
-      border: 1px solid rgba(245,200,107,0.5);
-      box-shadow: 0 0 14px rgba(182,35,50,0.6);
-      white-space: nowrap;
-    }
-
-    .holiday-badge span.icon { margin-right: 0.25rem; font-size: 0.8rem; }
-
     /* Comparison */
     #comparison { padding-top: 4rem; }
 
@@ -1321,9 +1288,8 @@
                 <div class="mini-tier-tagline">1-page site · logo · assets</div>
               </div>
               <div class="mini-tier-price">
-                <span class="old-price">$649</span>
-                <strong class="new-price">$549</strong>
-                <span>$100 holiday savings</span>
+                <strong>$649</strong>
+                <span>USD</span>
               </div>
             </div>
             <div class="mini-tier featured">
@@ -1332,9 +1298,8 @@
                 <div class="mini-tier-tagline">Multi-page site · consults · cards & brochure</div>
               </div>
               <div class="mini-tier-price">
-                <span class="old-price">$1,395</span>
-                <strong class="new-price">$995</strong>
-                <span>Popular choice · $400 off</span>
+                <strong>$1,395</strong>
+                <span>USD</span>
               </div>
             </div>
             <div class="mini-tier">
@@ -1343,9 +1308,8 @@
                 <div class="mini-tier-tagline">Custom CRM · Accounting · AI</div>
               </div>
               <div class="mini-tier-price">
-                <span class="old-price">$1,895</span>
-                <strong class="new-price">$1,395</strong>
-                <span>$500 holiday savings</span>
+                <strong>$1,895</strong>
+                <span>USD</span>
               </div>
             </div>
           </div>
@@ -1424,14 +1388,7 @@
         <div class="tier-top">
           <div class="tier-tag">Tier 1</div>
           <div class="tier-name">Essentials Launch Pack</div>
-          <div class="tier-price">
-            <span class="old-price">$649</span>
-            <span class="new-price">$549</span>
-            <span class="tier-price-note">
-              <span class="holiday-badge"><span class="icon">🎀</span> $100 holiday savings</span>
-              <span class="tier-price-date">Ends Jan 31, 2026</span>
-            </span>
-          </div>
+          <div class="tier-price">$649</div>
           <p class="tier-desc">
             Ideal for new entrepreneurs who want a clean, professional presence without meetings – everything handled for them via snapshot intake and email.
           </p>
@@ -1461,14 +1418,7 @@
         <div class="tier-top">
           <div class="tier-tag">Tier 2 <span class="tier-popular">POPULAR</span></div>
           <div class="tier-name">Collaborative Launch Pack</div>
-          <div class="tier-price">
-            <span class="old-price">$1,395</span>
-            <span class="new-price">$995</span>
-            <span class="tier-price-note">
-              <span class="holiday-badge"><span class="icon">🎀</span> $400 holiday savings</span>
-              <span class="tier-price-date">Ends Jan 31, 2026</span>
-            </span>
-          </div>
+          <div class="tier-price">$1,395</div>
           <p class="tier-desc">
             For founders who want direct collaboration, deeper structure and physical brand materials they can hand out and present with confidence.
           </p>
@@ -1496,14 +1446,7 @@
         <div class="tier-top">
           <div class="tier-tag">Tier 3</div>
           <div class="tier-name">Executive Launch Pack</div>
-          <div class="tier-price">
-            <span class="old-price">$1,895</span>
-            <span class="new-price">$1,395</span>
-            <span class="tier-price-note">
-              <span class="holiday-badge"><span class="icon">🎀</span> $500 holiday savings</span>
-              <span class="tier-price-date">Ends Jan 31, 2026</span>
-            </span>
-          </div>
+          <div class="tier-price">$1,895</div>
           <p class="tier-desc">
             For founders who want an executive-level buildout with financial setup, banking integration and the core systems needed to run the business properly. A premium foundation focused on structure, clarity and long-term stability.
           </p>
@@ -1706,7 +1649,7 @@
       <div class="section-eyebrow">Ready to move?</div>
       <h2 class="cta-title">Launch a business built to make an impression.</h2>
       <p class="cta-sub">
-        If you’re done collecting courses and ready to hold real assets in your hands – a brand, a system – 
+        If you’re done collecting courses and ready to hold real assets in your hands – a brand, a system –
         the Business Starter Pack is built for you. Apply for a free consultation, choose your tier, and let BizReady
         do the heavy lifting.
       </p>
@@ -1746,17 +1689,17 @@
       <div class="tier-modal-options">
         <button type="button" class="tier-modal-btn" data-tier="Tier 1 · Essentials Launch Pack">
           Tier 1 · Essentials Launch Pack
-          <span>$549 · $100 holiday savings</span>
+          <span>$649 USD</span>
         </button>
 
         <button type="button" class="tier-modal-btn featured" data-tier="Tier 2 · Collaborative Launch Pack">
           Tier 2 · Collaborative Launch Pack
-          <span>$995 · $400 holiday savings</span>
+          <span>$1,395 USD</span>
         </button>
 
         <button type="button" class="tier-modal-btn" data-tier="Tier 3 · Executive Launch Pack">
           Tier 3 · Executive Launch Pack
-          <span>$1,395 · $500 holiday savings</span>
+          <span>$1,895 USD</span>
         </button>
       </div>
 
